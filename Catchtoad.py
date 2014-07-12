@@ -25,23 +25,15 @@ WINDOW_HEIGHT = 400
 windowSurface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), 0)
 pygame.display.set_caption("Catch Toad")
 
-#Restart Text
-resFont = pygame.font.SysFont("impact", 25)
-restart = resFont.render("To Restart Press Enter", True, (128, 0, 128))
-
 
 #Instruction Text
 insFont = pygame.font.SysFont("impact", 25)
 instructions = insFont.render("Hit Enter to Continue", True, (128,128,0))
 
 #Set up Color Constants
-WHITE = (255,255,255)
 BLUE = (0,0,255)
 BLACK = (0,0,0)
 
-#Set winning text
-textFont = pygame.font.SysFont("impact", 60)
-text = textFont.render("YOU WIN", True, (193,0,0))
 
 #Set up the image data structures
 toadCounter = 0
@@ -68,28 +60,10 @@ moveUp = False
 moveDown = False
 
 
-#restart
-def play_again():
-    windowSurface.blit(text, (90, 104))
-    windowSurface.blit(restart, (80,180))
-    clock = pygame.time.Clock()
-    pygame.display.flip()
-    in_main_menu = True
-    while in_main_menu:
-        clock.tick(50)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                in_main_menu = False
-                pygame.display.quit()
-                pygame.quit()
-            if event.type == KEYDOWN:
-                if event.key == K_RETURN:
-                    in_main_menu = False
-                    level_screen()
 
 
 def level_screen():
-    windowSurface.fill(WHITE)
+    windowSurface.fill(BLACK)
     #Next Level Text
     lvlFont = pygame.font.SysFont("impact", 40)
     lvl = lvlFont.render("Level:  " + str(level) + "  Completed", True, (100, 149, 237))
@@ -166,7 +140,7 @@ while startGame:
         toads.append(pygame.Rect(random.randint(0, WINDOW_WIDTH - TOAD_SIZE), random.randint(0, WINDOW_HEIGHT - TOAD_SIZE), TOAD_SIZE, TOAD_SIZE))
 
     #draw white background
-    windowSurface.fill(WHITE)
+    windowSurface.fill(BLACK)
 
     #movement speed
     MOVE_SPEED = 10
@@ -209,7 +183,7 @@ while startGame:
     if len(toads) == 0:
         global level
         level += 1
-        play_again()
+        level_screen()
 
     #draw the window
     pygame.display.update()
