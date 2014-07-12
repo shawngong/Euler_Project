@@ -37,6 +37,7 @@ instructions = insFont.render("Hit Enter to Continue", True, (128,128,0))
 #Set up Color Constants
 WHITE = (255,255,255)
 BLUE = (0,0,255)
+BLACK = (0,0,0)
 
 #Set winning text
 textFont = pygame.font.SysFont("impact", 60)
@@ -46,10 +47,14 @@ text = textFont.render("YOU WIN", True, (193,0,0))
 toadCounter = 0
 NEW_TOAD = 40 #increasing this decreases speed bears spawn, decreasing increases the speed that bears spawn
 TOAD_SIZE = 64
-marioImage = pygame.image.load('mario1.jpg').convert_alpha()
-marioImageTwo = pygame.image.load('mario2.jpg').convert_alpha()
-toadImage = pygame.image.load('toad1.jpg').convert_alpha()
-toadImageTwo = pygame.image.load('toad2.jpg').convert_alpha()
+marioImage = pygame.image.load('Mario1.png').convert()
+marioImage.set_colorkey(BLACK)
+marioImageTwo = pygame.image.load('Mario2.png').convert()
+marioImageTwo.set_colorkey(BLACK)
+toadImage = pygame.image.load('Toad1.png').convert()
+toadImage.set_colorkey(BLACK)
+toadImageTwo = pygame.image.load('Toad2.png').convert()
+toadImageTwo.set_colorkey(BLACK)
 #Copy picture(S) to the directory of the program
 player = pygame.Rect(300, 100, 64,64)
 toads = []
