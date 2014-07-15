@@ -25,6 +25,9 @@ WINDOW_HEIGHT = 400
 windowSurface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), 0)
 pygame.display.set_caption("Catch Toad")
 
+#Lose Text
+losFont = pygame.font.SysFont("impact", 60)
+loser = losFont.render("YOU LOSE", True, (128,128,0))
 
 #Instruction Text
 insFont = pygame.font.SysFont("impact", 25)
@@ -60,7 +63,18 @@ moveUp = False
 moveDown = False
 
 
-
+def lose():
+    windowSurface.fill(BLACK)
+    windowSurface.blit(loser, (100,130))
+    clock = pygame.time.Clock()
+    pygame.display.flip()
+    in_lose_menu = True
+    while in_lose_menu:
+        clock.tick(1)
+        startGame = False
+        in_lose_menu = False
+        pygame.display.quit()
+        pygame.quit()
 
 def level_screen():
     windowSurface.fill(BLACK)
@@ -184,6 +198,8 @@ while startGame:
         global level
         level += 1
         level_screen()
+    elif len(toads) >= 30:
+        lose()
 
     #draw the window
     pygame.display.update()
